@@ -1,0 +1,17 @@
+{
+  "name": "लोकल सेवा",
+  "short_name": "लोकल सेवा",
+  "description": "आपके शहर की हर ज़रूरत, एक ही ऐप में",
+  "lang": "hi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b7a55",
+  "theme_color": "#0b7a55",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
