@@ -1,6 +1,6 @@
 // सरल Service Worker: पहले नेटवर्क, न मिले तो सेव की हुई कॉपी।
 // इससे नया अपडेट अपलोड करते ही लोगों को दिख जाता है।
-const CACHE = 'localseva-v1';
+const CACHE = 'hazir-v1';
 const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {

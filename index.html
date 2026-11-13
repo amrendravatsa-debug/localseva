@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b7a55">
+<meta name="theme-color" content="#c2410c">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<title>लोकल सेवा</title>
+<title>हाज़िर</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--g1:#0b7a55;--g2:#18b47b;--ink:#10231a;--mut:#5d7267;--bg:#f3f7f5;--line:#e3ece7;--bad:#dc2626}
+:root{--g1:#c2410c;--g2:#f97316;--ink:#2a1d14;--mut:#7a6a5e;--bg:#fff8f1;--line:#f0e2d3;--bad:#dc2626}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
 body{font-family:'Noto Sans Devanagari',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);padding-bottom:calc(84px + env(safe-area-inset-bottom));font-size:15px;line-height:1.5}
@@ -32,41 +32,44 @@ h1,h2,h3,p{margin:0}
 .search input{border:0;outline:0;flex:1;font:inherit;background:transparent;min-width:0;width:auto;margin:0;padding:0;border-radius:0}
 .rf{position:absolute;right:16px;top:calc(env(safe-area-inset-top) + 18px);background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:12px;width:40px;height:40px;font-size:20px}
 
+.brandrow{display:flex;align-items:center;gap:10px;margin-bottom:12px}.brandrow svg{width:34px;height:34px;flex:none}.brandrow b{font-size:20px;letter-spacing:.2px}.brandrow small{display:block;opacity:.9;font-size:12px;margin-top:-2px}
+.vach{display:flex;gap:14px;align-items:center;margin-top:12px;background:#fff;border-radius:22px;padding:16px 18px;box-shadow:0 6px 18px rgba(42,29,20,.07);cursor:pointer}.vach .pe{font-size:30px}.vach p{color:var(--mut);font-size:13px}.vach span{margin-left:auto;font-size:22px;color:var(--g1)}
+.vl{list-style:none;padding:0;margin:10px 0 4px}.vl li{display:flex;gap:12px;margin:12px 0}.vl .n{flex:none;width:30px;height:30px;border-radius:10px;background:#ffeedd;color:var(--g1);font-weight:700;display:flex;align-items:center;justify-content:center}.vl b{display:block}.vl small{color:var(--mut)}
 .pad{padding:16px}
 .pad.up{margin-top:-32px;position:relative;z-index:1}
 
 /* services grid */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.svc{border:0;border-radius:24px;padding:20px 12px 16px;color:var(--ink);text-align:center;box-shadow:0 6px 18px rgba(16,35,26,.08);transition:transform .15s}
+.svc{border:0;border-radius:24px;padding:20px 12px 16px;color:var(--ink);text-align:center;box-shadow:0 6px 18px rgba(42,29,20,.08);transition:transform .15s}
 .svc:active{transform:scale(.96)}
 .svc .em{font-size:40px;line-height:1.1;margin-bottom:8px}
 .svc b{display:block;font-size:16px}
 .svc small{display:block;color:var(--mut);margin-top:2px;font-size:12px}
 
-.promo{display:flex;gap:14px;align-items:center;margin-top:18px;background:#102a20;color:#fff;border-radius:22px;padding:18px}
+.promo{display:flex;gap:14px;align-items:center;margin-top:18px;background:#2b1d14;color:#fff;border-radius:22px;padding:18px}
 .promo .pe{font-size:34px}
 .promo p{opacity:.8;font-size:13px;margin-top:2px}
 .cta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;background:#fff;border:1.5px dashed var(--g2);border-radius:22px;padding:16px 18px;cursor:pointer}
 .cta p{color:var(--mut);font-size:13px}
 .cta span{font-size:22px;color:var(--g1)}
-.install{display:flex;justify-content:space-between;align-items:center;background:#e9f8f1;border-radius:18px;padding:12px 14px;margin-bottom:14px;font-size:14px}
+.install{display:flex;justify-content:space-between;align-items:center;background:#ffeedd;border-radius:18px;padding:12px 14px;margin-bottom:14px;font-size:14px}
 .install button{border:0;background:var(--g1);color:#fff;border-radius:12px;padding:8px 14px;font-weight:700}
 
 /* topbar + detail */
-.topbar{position:sticky;top:0;z-index:5;background:rgba(243,247,245,.92);backdrop-filter:blur(8px);display:flex;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top) + 12px) 16px 12px}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(255,248,241,.92);backdrop-filter:blur(8px);display:flex;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top) + 12px) 16px 12px}
 .topbar h2{font-size:19px}
-.back{width:42px;height:42px;border-radius:14px;border:0;background:#fff;box-shadow:0 3px 10px rgba(16,35,26,.1);font-size:20px}
+.back{width:42px;height:42px;border-radius:14px;border:0;background:#fff;box-shadow:0 3px 10px rgba(42,29,20,.1);font-size:20px}
 .dh{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;text-align:center;padding:calc(env(safe-area-inset-top) + 16px) 20px 54px;border-radius:0 0 34px 34px;position:relative}
 .dh .back{position:absolute;left:16px;top:calc(env(safe-area-inset-top) + 14px);background:rgba(255,255,255,.22);color:#fff;box-shadow:none}
 .dh .big{width:92px;height:92px;border-radius:30px;background:#fff;margin:14px auto 12px;display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 10px 24px rgba(0,0,0,.18)}
 .dh h2{font-size:22px}
 .dh p{opacity:.92;margin-top:4px}
-.info{background:#fff;border-radius:20px;padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(16,35,26,.06)}
+.info{background:#fff;border-radius:20px;padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(42,29,20,.06)}
 .info small{color:var(--mut);display:block}
 .info b{font-size:18px;color:var(--g1)}
 
 /* cards */
-.pc{display:flex;align-items:center;gap:14px;background:#fff;border-radius:22px;padding:14px;margin-bottom:12px;box-shadow:0 6px 18px rgba(16,35,26,.07);cursor:pointer}
+.pc{display:flex;align-items:center;gap:14px;background:#fff;border-radius:22px;padding:14px;margin-bottom:12px;box-shadow:0 6px 18px rgba(42,29,20,.07);cursor:pointer}
 .pc:active{transform:scale(.99)}
 .av{width:58px;height:58px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:30px;flex:none}
 .pi{flex:1;min-width:0;display:flex;flex-direction:column}
@@ -74,13 +77,13 @@ h1,h2,h3,p{margin:0}
 .pi span{color:var(--mut);font-size:13px}
 .pi .rate{color:var(--g1);font-weight:700;margin-top:2px}
 .chev{font-size:26px;color:#9db0a6}
-.bc{background:#fff;border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(16,35,26,.07)}
+.bc{background:#fff;border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(42,29,20,.07)}
 .bc .r1{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
 .bc .r1 b{font-size:16px}
 .bc div.l{color:var(--mut);font-size:14px}
-.bc .t{font-size:12px;color:#8aa095;margin-top:6px}
+.bc .t{font-size:12px;color:#a8998c;margin-top:6px}
 .badge{font-size:12px;font-weight:700;border-radius:99px;padding:4px 12px;white-space:nowrap}
-.b-new{background:#fff1cf;color:#8a5a00}.b-ok{background:#dcecff;color:#14509b}.b-done{background:#d9f6e8;color:#0a6b46}.b-no{background:#fde2e2;color:#9b1c1c}
+.b-new{background:#fff1cf;color:#8a5a00}.b-ok{background:#dcecff;color:#14509b}.b-done{background:#d9f6e8;color:#0a6b46}.b-no{background:#fde2e2;color:#9b1c1c}.b-here{background:#ece4ff;color:#5b2fa8}
 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .mini{border:0;border-radius:12px;padding:9px 14px;font-weight:700;font-size:13px;background:var(--g1);color:#fff;text-decoration:none;display:inline-block}
 .mini.o{background:#fff;color:var(--g1);border:1.5px solid var(--line)}
@@ -90,18 +93,18 @@ h3.sec{font-size:17px;margin:20px 0 10px}
 .empty .e{font-size:54px;margin-bottom:8px}
 
 /* buttons + inputs */
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:18px;padding:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 10px 22px rgba(11,122,85,.28);margin-top:12px;text-decoration:none;font-size:15px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:18px;padding:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 10px 22px rgba(194,65,12,.30);margin-top:12px;text-decoration:none;font-size:15px}
 .btn.wa{background:#25d366;box-shadow:0 10px 22px rgba(37,211,102,.28)}
 .btn.ghost{background:#fff;color:var(--g1);box-shadow:none;border:1.5px solid var(--line)}
-.btn.dark{background:#102a20;box-shadow:0 10px 22px rgba(16,42,32,.25)}
+.btn.dark{background:#2b1d14;box-shadow:0 10px 22px rgba(43,29,20,.25)}
 label{display:block;font-weight:500;font-size:14px;margin-top:4px}
 input,textarea,select{width:100%;padding:13px 14px;border-radius:14px;border:1.5px solid var(--line);font:inherit;background:#fff;margin:6px 0 12px;outline:0;color:var(--ink)}
 input:focus,textarea:focus,select:focus{border-color:var(--g2)}
-.card{background:#fff;border-radius:24px;padding:20px;box-shadow:0 10px 28px rgba(16,35,26,.08)}
+.card{background:#fff;border-radius:24px;padding:20px;box-shadow:0 10px 28px rgba(42,29,20,.08)}
 
 /* onboarding */
 .ob{padding:calc(env(safe-area-inset-top) + 40px) 22px 30px;text-align:center}
-.ob .logo{width:92px;height:92px;border-radius:30px;margin:0 auto 14px;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 14px 30px rgba(11,122,85,.35)}
+.ob .logo{width:92px;height:92px;border-radius:30px;margin:0 auto 14px;background:linear-gradient(135deg,var(--g1),var(--g2));display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 14px 30px rgba(194,65,12,.38)}
 .ob h1{font-size:28px}
 .ob p{color:var(--mut);margin:6px 0 26px}
 .ob .card{text-align:left}
@@ -116,7 +119,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--g2)}
 .sw input:checked+.tg::after{left:25px}
 
 /* nav */
-.nav{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;background:#fff;display:flex;gap:4px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;box-shadow:0 -8px 28px rgba(16,35,26,.1);z-index:10}
+.nav{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;background:#fff;display:flex;gap:4px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;box-shadow:0 -8px 28px rgba(42,29,20,.1);z-index:10}
 .nav button{flex:1;border:0;background:transparent;border-radius:16px;padding:8px 4px;color:var(--mut);font-size:12px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:2px}
 .nav button span{font-size:22px;line-height:1.1}
 .nav button.on{background:#e7f6ef;color:var(--g1);font-weight:700}
@@ -136,6 +139,15 @@ input:focus,textarea:focus,select:focus{border-color:var(--g2)}
 .center{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;color:var(--mut);gap:10px;text-align:center;padding:24px}
 .spin{width:36px;height:36px;border-radius:50%;border:4px solid #d5e4dc;border-top-color:var(--g1);animation:rot .8s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
+.vb{display:inline-block;background:#e0f5ea;color:#0a6b46;border-radius:99px;padding:1px 8px;font-size:11px;font-weight:700;margin-left:6px;vertical-align:middle}
+.rt{color:#b7791f;font-weight:700;font-size:13px}
+.tag{display:inline-block;background:#fff1cf;color:#8a5a00;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:6px}
+.chk{display:flex;align-items:center;gap:10px;margin:6px 0 12px;font-weight:500}
+.chk input{width:22px;height:22px;margin:0;flex:none}
+.stars{display:flex;gap:6px;justify-content:center;margin:10px 0 16px}
+.stars button{border:0;background:transparent;font-size:38px;line-height:1;color:#d3dcd7;padding:0}
+.stars button.on{color:#f5b301}
+.rv{border-top:1px solid var(--line);padding:10px 0;font-size:14px;color:var(--ink);font-weight:400}
 code{background:#eef3f0;padding:2px 6px;border-radius:6px;font-size:13px}
 </style>
 </head>
@@ -158,6 +170,8 @@ const firebaseConfig = {
 };
 /* ================================================================ */
 
+const SUPPORT_WA = ''; // शिकायत/सहायता के WhatsApp नंबर (देश कोड सहित, जैसे 919XXXXXXXXX)। खाली हो तो बटन छिपा रहेगा।
+const LOGO = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 12C33 12 20 25 20 42c0 20 22 38 30 46 8-8 30-26 30-46C80 25 67 12 50 12z" fill="#fff"/><path d="M37 43l9 9 17-18" fill="none" stroke="#c2410c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const CONFIGURED = !!firebaseConfig.apiKey && firebaseConfig.apiKey.indexOf('YOUR_') !== 0;
 
 const SERVICES = [
@@ -165,9 +179,19 @@ const SERVICES = [
   {key:'plumber', name:'प्लंबर', emoji:'🔧', bg:'#e3f0ff', hint:'नल, पाइप, टंकी'},
   {key:'electrician', name:'इलेक्ट्रीशियन', emoji:'💡', bg:'#fff4d6', hint:'वायरिंग, पंखा, मरम्मत'},
   {key:'laundry', name:'लॉन्ड्री', emoji:'🧺', bg:'#e2f6ee', hint:'धुलाई, प्रेस, पिकअप'},
-  {key:'dairy', name:'बल्क दूध-दही', emoji:'🥛', bg:'#eaecff', hint:'शादी-ब्याह के लिए थोक'}
+  {key:'dairy', name:'बल्क दूध-दही', emoji:'🥛', bg:'#eaecff', hint:'शादी-ब्याह के लिए थोक'},
+  {key:'pandit', name:'पंडित जी', emoji:'🙏', bg:'#fff0e0', hint:'पूजा, कथा, मुहूर्त, गृह-प्रवेश'},
+  {key:'appliance', name:'AC / फ्रिज / मशीन', emoji:'❄️', bg:'#e0f4ff', hint:'इंस्टॉलेशन और मरम्मत'},
+  {key:'tent', name:'टेंट-कैटरिंग', emoji:'🎪', bg:'#f3e8ff', hint:'शादी, पार्टी, भोज'},
+  {key:'mistri', name:'मिस्त्री / कारपेंटर', emoji:'🔨', bg:'#f1ece4', hint:'मरम्मत, फर्नीचर, पेंट'},
+  {key:'cleaning', name:'घर की सफ़ाई', emoji:'🧹', bg:'#e6f7ef', hint:'सफ़ाई, टंकी, कीट-नियंत्रण'},
+  {key:'beauty', name:'ब्यूटीशियन', emoji:'💄', bg:'#ffe6f2', hint:'मेकअप, फेशियल, दुल्हन श्रृंगार'},
+  {key:'maid', name:'मेड / घरेलू सहायिका', emoji:'🧼', bg:'#e8f1ff', hint:'झाड़ू-पोछा, बर्तन, खाना'},
+  {key:'banquet', name:'बैंक्वेट हॉल', emoji:'🏛️', bg:'#fff1d9', hint:'पार्टी, रिसेप्शन, सगाई'},
+  {key:'marriage', name:'मैरेज हॉल', emoji:'💒', bg:'#ffe9e9', hint:'शादी, विवाह भवन, लॉन'},
+  {key:'hotel', name:'लोकल होटल / लॉज', emoji:'🏨', bg:'#e7f7f0', hint:'कमरे, मेहमानों का ठहराव'}
 ];
-const SC = {'नया':'b-new','स्वीकार':'b-ok','पूरा':'b-done','रद्द':'b-no'};
+const SC = {'नया':'b-new','स्वीकार':'b-ok','हाज़िर':'b-here','पूरा':'b-done','रद्द':'b-no'};
 
 const $ = s => document.querySelector(s);
 const svc = k => SERVICES.find(s => s.key === k) || SERVICES[0];
@@ -181,7 +205,7 @@ const fmt = ts => {
 function loadProfile(){ try { return JSON.parse(localStorage.getItem('ls_profile') || 'null'); } catch (e) { return null; } }
 function saveProfile(p){ try { localStorage.setItem('ls_profile', JSON.stringify(p)); } catch (e) {} S.profile = p; }
 
-const S = {tab:'home', view:null, uid:null, profile:loadProfile(), cache:{}, installEv:null};
+const S = {tab:'home', view:null, uid:null, profile:loadProfile(), cache:{}, installEv:null, rate:{}, bk:{}, reviewed:{}, rv:null};
 let auth = null, db = null;
 
 function toast(msg){
@@ -231,7 +255,7 @@ function setupScreen(){
 
 /* ---------- ऑनबोर्डिंग ---------- */
 function onboardScreen(){
-  $('#app').innerHTML = '<div class="wrap"><div class="ob"><div class="logo">🤝</div><h1>लोकल सेवा</h1><p>आपके शहर की हर ज़रूरत, एक ही ऐप में</p>' +
+  $('#app').innerHTML = '<div class="wrap"><div class="ob"><div class="logo" style="padding:16px">' + LOGO + '</div><h1>हाज़िर</h1><p><b>हर काम में हाज़िर</b><br>आपके शहर की हर ज़रूरत, एक ही ऐप में</p>' +
     '<div class="card"><label>आपका नाम</label><input id="o_name" placeholder="जैसे: रमेश कुमार" autocomplete="name">' +
     '<label>मोबाइल नंबर</label><input id="o_phone" type="tel" inputmode="numeric" maxlength="10" placeholder="10 अंकों का नंबर" autocomplete="tel">' +
     '<button class="btn" onclick="doOnboard()">शुरू करें →</button></div>' +
@@ -255,6 +279,19 @@ function filterSvc(v){
   v = v.trim();
   $('#svcs').innerHTML = svcCards(SERVICES.filter(s => s.name.indexOf(v) > -1 || s.hint.indexOf(v) > -1));
 }
+function vachanSheet(){
+  const items = [
+    ['साफ़ दाम','काम से पहले रेट या ऑफ़र तय होता है। वीडियो कॉल पर भाव-तोल भी कर सकते हैं।'],
+    ['समय का मान','कारीगर पहुँचकर "हाज़िर हूँ" बटन दबाता है, आपको ख़बर मिल जाती है।'],
+    ['असली रेटिंग','रेटिंग सिर्फ़ उसी से, जिसका काम पूरा हो चुका हो।'],
+    ['आपकी सुनवाई','कोई शिकायत हो तो हम सुनेंगे और जवाब देंगे।'],
+    ['कारीगर का सम्मान','सही मेहनताना और सम्मान, ताकि अच्छे लोग टिकें।']
+  ];
+  sheet('<h3>🤝 हाज़िर वचन</h3><p class="mut">हर काम में हाज़िर, और इन पाँच बातों में पक्के।</p><ul class="vl">' +
+    items.map((x, i) => '<li><span class="n">' + (i + 1) + '</span><div><b>' + x[0] + '</b><small>' + x[1] + '</small></div></li>').join('') + '</ul>' +
+    (SUPPORT_WA ? '<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/' + SUPPORT_WA + '?text=' + encodeURIComponent('हाज़िर ऐप: मुझे सहायता चाहिए') + '">💬 सहायता / शिकायत</a>' : '') +
+    '<button class="btn ghost" onclick="closeSheet()">ठीक है</button>');
+}
 function installApp(){
   const ev = S.installEv; if (!ev) return;
   ev.prompt(); ev.userChoice.then(() => { S.installEv = null; render(); });
@@ -262,31 +299,44 @@ function installApp(){
 function viewHome(){
   const first = esc((S.profile.name || '').split(' ')[0]);
   shell(
-    '<header class="hero"><div class="hello">नमस्ते, ' + first + ' 👋</div><h1>आज कौन-सा काम<br>करवाना है?</h1>' +
+    '<header class="hero"><div class="brandrow">' + LOGO.replace('#fff', '#fff') + '<div><b>हाज़िर</b><small>हर काम में हाज़िर</small></div></div><div class="hello">नमस्ते, ' + first + ' 👋</div><h1>आज कौन-सा काम<br>करवाना है?</h1>' +
     '<div class="search"><span>🔍</span><input id="q" placeholder="सेवा खोजें…" oninput="filterSvc(this.value)"></div></header>' +
     '<section class="pad up">' +
     (S.installEv ? '<div class="install"><span>📲 इसे फ़ोन की होम स्क्रीन पर जोड़ें</span><button onclick="installApp()">इंस्टॉल</button></div>' : '') +
     '<div id="svcs" class="grid">' + svcCards(SERVICES) + '</div>' +
     '<div class="promo"><div class="pe">🎥</div><div><b>वीडियो कॉल पर रेट तय करें</b><p>घर बैठे दुकानदार को देखें और मोलभाव करें।</p></div></div>' +
+    '<div class="vach" onclick="vachanSheet()"><div class="pe">🤝</div><div><b>हाज़िर वचन</b><p>हमारे पाँच वादे आपसे</p></div><span>→</span></div>' +
     '<div class="cta" onclick="setTab(\'pro\')"><div><b>आप सेवा देते हैं?</b><p>मुफ़्त रजिस्टर करें और नए ग्राहक पाएँ</p></div><span>→</span></div>' +
     '</section>'
   );
 }
 
 /* ---------- प्रोवाइडर लिस्ट ---------- */
+function stars(n){ n = Math.max(0, Math.min(5, Number(n) || 0)); return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n); }
+function ratingOf(pid){ const r = S.rate[pid]; return r && r.n ? {avg:r.sum / r.n, n:r.n} : null; }
+function ratingHTML(pid){ const r = ratingOf(pid); return r ? '<span class="rt">★ ' + r.avg.toFixed(1) + ' (' + r.n + ')</span>' : '<span class="mut">नया</span>'; }
 function pcard(p){
   const s = svc(p.service);
   return '<article class="pc" onclick="go(\'detail\',\'' + esc(p.id) + '\')"><div class="av" style="background:' + s.bg + '">' + s.emoji + '</div>' +
-    '<div class="pi"><b>' + esc(p.name) + '</b><span>📍 ' + esc(p.area) + '</span><span class="rate">' + esc(p.rate) + '</span></div><span class="chev">›</span></article>';
+    '<div class="pi"><b>' + esc(p.name) + (p.verified === true ? '<span class="vb">✔ जाँचा हुआ</span>' : '') + '</b><span>📍 ' + esc(p.area) + ' • ' + ratingHTML(p.id) + '</span><span class="rate">' + esc(p.rate) + '</span></div><span class="chev">›</span></article>';
 }
 async function viewList(key){
   const s = svc(key);
   shell('<div class="topbar"><button class="back" onclick="back()">←</button><h2>' + s.emoji + ' ' + s.name + '</h2></div><section class="pad" id="content">' + skeleton(3) + '</section>', false);
   try {
-    const snap = await db.collection('providers').where('service', '==', key).where('active', '==', true).get();
-    const docs = snap.docs.map(d => Object.assign({id:d.id}, d.data()));
+    const res = await Promise.all([
+      db.collection('providers').where('service', '==', key).where('active', '==', true).get(),
+      db.collection('reviews').where('service', '==', key).get().catch(() => null)
+    ]);
+    const docs = res[0].docs.map(d => Object.assign({id:d.id}, d.data()));
+    S.rate = {};
+    if (res[1]) res[1].docs.forEach(d => {
+      const r = d.data(); const e = S.rate[r.providerId] || (S.rate[r.providerId] = {sum:0, n:0});
+      e.sum += Number(r.rating) || 0; e.n += 1;
+    });
     docs.forEach(d => { S.cache[d.id] = d; });
-    docs.sort((a, b) => ms(b.createdAt) - ms(a.createdAt));
+    const score = p => { const r = ratingOf(p.id); return (p.verified === true ? 10 : 0) + (r ? r.avg : 0); };
+    docs.sort((a, b) => (score(b) - score(a)) || (ms(b.createdAt) - ms(a.createdAt)));
     if (!(S.view && S.view.view === 'list' && S.view.params === key)) return;
     $('#content').innerHTML = docs.length ? docs.map(pcard).join('') :
       emptyHTML(s.emoji, 'अभी इस सेवा में कोई प्रोवाइडर नहीं है।<br>आप पहले बनें! <b>प्रोवाइडर</b> टैब में रजिस्टर करें।');
@@ -299,11 +349,12 @@ async function viewList(key){
 function viewDetail(id){
   const p = S.cache[id];
   if (!p) { S.view = null; return render(); }
-  const s = svc(p.service), ph = esc(p.phone);
+  const s = svc(p.service), ph = esc(p.phone), rt = ratingOf(id);
   shell(
-    '<div class="dh"><button class="back" onclick="back()">←</button><div class="big">' + s.emoji + '</div><h2>' + esc(p.name) + '</h2><p>' + s.name + ' • 📍 ' + esc(p.area) + '</p></div>' +
+    '<div class="dh"><button class="back" onclick="back()">←</button><div class="big">' + s.emoji + '</div><h2>' + esc(p.name) + (p.verified === true ? '<span class="vb" style="background:#fff;">✔ जाँचा हुआ</span>' : '') + '</h2><p>' + s.name + ' • 📍 ' + esc(p.area) + '</p></div>' +
     '<section class="pad up">' +
     '<div class="info"><small>रेट</small><b>' + esc(p.rate) + '</b></div>' +
+    '<div class="info"><small>रेटिंग</small><b>' + (rt ? '★ ' + rt.avg.toFixed(1) + ' (' + rt.n + ' समीक्षा)' : 'अभी कोई रेटिंग नहीं') + '</b><div id="rvs"></div></div>' +
     (p.about ? '<div class="info"><small>जानकारी</small><p>' + esc(p.about) + '</p></div>' : '') +
     '<button class="btn" onclick="startVideo(\'' + esc(id) + '\')">🎥 वीडियो कॉल पर रेट तय करें</button>' +
     '<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/91' + ph + '">💬 WhatsApp पर बात करें</a>' +
@@ -311,9 +362,14 @@ function viewDetail(id){
     '<button class="btn dark" onclick="bookSheet(\'' + esc(id) + '\')">📅 बुकिंग करें</button>' +
     '</section>', false
   );
+  db.collection('reviews').where('providerId', '==', id).get().then(snap => {
+    const list = snap.docs.map(d => d.data()).filter(x => x.comment).sort((a, b) => ms(b.createdAt) - ms(a.createdAt)).slice(0, 3);
+    const el = $('#rvs');
+    if (el && list.length) el.innerHTML = list.map(x => '<div class="rv"><span class="rt">' + stars(x.rating) + '</span> ' + esc(x.customerName || '') + '<br>' + esc(x.comment) + '</div>').join('');
+  }).catch(() => {});
 }
 function startVideo(id){
-  const room = 'localseva-' + id + '-' + S.uid;
+  const room = 'hazir-' + id + '-' + S.uid;
   db.collection('videoRequests').doc(id + '_' + S.uid).set({
     providerId:id, customerId:S.uid, customerName:S.profile.name, customerPhone:S.profile.phone,
     room:room, createdAt:firebase.firestore.FieldValue.serverTimestamp()
@@ -323,26 +379,37 @@ function startVideo(id){
 }
 function bookSheet(id){
   const p = S.cache[id]; if (!p) return;
+  const dairy = ['dairy','tent','banquet','marriage','hotel'].indexOf(p.service) >= 0;
   sheet('<h3>📅 बुकिंग: ' + esc(p.name) + '</h3>' +
     '<label>पता</label><textarea id="b_addr" rows="2" placeholder="मोहल्ला, लैंडमार्क…"></textarea>' +
     '<label>कब चाहिए?</label><input id="b_when" placeholder="जैसे: कल सुबह 10 बजे">' +
-    '<label>काम की जानकारी / तय रेट (वैकल्पिक)</label><textarea id="b_note" rows="2"></textarea>' +
+    '<label class="chk"><input type="checkbox" id="b_bulk" ' + (dairy ? 'checked' : '') + ' onchange="document.getElementById(\'b_qwrap\').style.display = this.checked ? \'block\' : \'none\'"> 🎉 शादी / बल्क ऑर्डर है</label>' +
+    '<div id="b_qwrap" style="display:' + (dairy ? 'block' : 'none') + '"><label>कितना चाहिए?</label><input id="b_qty" placeholder="जैसे: 100 लीटर दूध, 40 किलो दही"></div>' +
+    '<label>आपका प्रस्तावित रेट ₹ (वैकल्पिक, मोलभाव के लिए)</label><input id="b_offer" type="tel" inputmode="numeric" maxlength="7" placeholder="जैसे: 80">' +
+    '<label>काम की जानकारी (वैकल्पिक)</label><textarea id="b_note" rows="2"></textarea>' +
     '<button class="btn" id="b_go" onclick="sendBooking(\'' + esc(id) + '\')">बुकिंग भेजें</button>');
 }
 async function sendBooking(id){
   const p = S.cache[id];
   const address = $('#b_addr').value.trim(), when = $('#b_when').value.trim(), note = $('#b_note').value.trim();
+  const bulk = $('#b_bulk').checked, qty = $('#b_qty').value.trim(), offerRaw = ($('#b_offer').value || '').replace(/\D/g, '');
   if (!address || !when) return toast('पता और समय ज़रूर भरें');
+  if (bulk && !qty) return toast('मात्रा लिखें, जैसे: 100 लीटर');
+  const offer = offerRaw ? Number(offerRaw) : null;
   $('#b_go').disabled = true;
   try {
     await db.collection('bookings').add({
       customerId:S.uid, customerName:S.profile.name, customerPhone:S.profile.phone,
       providerId:id, providerName:p.name, providerPhone:p.phone, service:p.service,
-      address:address, when:when, note:note, status:'नया',
+      address:address, when:when, note:note, bulk:bulk, qty:bulk ? qty : '', offer:offer, status:'नया',
       createdAt:firebase.firestore.FieldValue.serverTimestamp()
     });
-    closeSheet(); toast('बुकिंग भेज दी गई ✅');
-    S.view = null; S.tab = 'bookings'; render();
+    const msg = 'नमस्ते ' + p.name + ', मैंने हाज़िर ऐप पर बुकिंग की है।\nकाम: ' + svc(p.service).name + (bulk ? ' (बल्क: ' + qty + ')' : '') +
+      '\nकब: ' + when + '\nपता: ' + address + (offer ? '\nमेरा प्रस्तावित रेट: ₹' + offer : '') +
+      '\nकृपया ऐप में देखकर स्वीकार करें। - ' + S.profile.name;
+    sheet('<h3>✅ बुलावा भेज दिया, अब वे हाज़िर होंगे</h3><p class="mut" style="margin-bottom:6px">प्रोवाइडर को WhatsApp पर भी बता दें, जवाब जल्दी मिलेगा।</p>' +
+      '<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/91' + esc(p.phone) + '?text=' + encodeURIComponent(msg) + '">💬 WhatsApp पर बताएँ</a>' +
+      '<button class="btn ghost" onclick="goBookings()">मेरी बुकिंग देखें</button>');
   } catch (e) {
     $('#b_go').disabled = false; toast('बुकिंग नहीं हो पाई, दोबारा कोशिश करें');
   }
@@ -356,22 +423,62 @@ function bookingCard(b, pro){
   let acts = '';
   if (ph) acts += '<a class="mini o" href="tel:' + (pro ? '' : '+91') + ph + '">📞 कॉल</a>';
   if (pro && b.status === 'नया') acts += '<button class="mini" onclick="setStatus(\'' + esc(b.id) + '\',\'स्वीकार\')">✔ स्वीकार</button><button class="mini r" onclick="setStatus(\'' + esc(b.id) + '\',\'रद्द\')">रद्द</button>';
-  if (pro && b.status === 'स्वीकार') acts += '<button class="mini" onclick="setStatus(\'' + esc(b.id) + '\',\'पूरा\')">✅ काम पूरा हुआ</button>';
-  return '<div class="bc"><div class="r1"><b>' + s.emoji + ' ' + esc(who) + '</b><span class="badge ' + (SC[b.status] || 'b-new') + '">' + esc(b.status) + '</span></div>' +
+  if (pro && b.status === 'स्वीकार') acts += '<button class="mini" onclick="setStatus(\'' + esc(b.id) + '\',\'हाज़िर\')">🙋 हाज़िर हूँ</button>';
+  if (pro && b.status === 'हाज़िर') acts += '<button class="mini" onclick="setStatus(\'' + esc(b.id) + '\',\'पूरा\')">✅ काम पूरा हुआ</button>';
+  if (!pro && b.status === 'पूरा') acts += S.reviewed[b.id] ? '<span class="mini o">✓ रेटिंग दी</span>' : '<button class="mini" onclick="reviewSheet(\'' + esc(b.id) + '\')">⭐ रेटिंग दें</button>';
+  return '<div class="bc"><div class="r1"><b>' + s.emoji + ' ' + esc(who) + (b.bulk ? '<span class="tag">🎉 बल्क</span>' : '') + '</b><span class="badge ' + (SC[b.status] || 'b-new') + '">' + esc(b.status) + '</span></div>' +
     '<div class="l">🗓 ' + esc(b.when) + '</div><div class="l">📍 ' + esc(b.address) + '</div>' +
+    (b.qty ? '<div class="l">📦 ' + esc(b.qty) + '</div>' : '') +
+    (b.offer ? '<div class="l">💬 प्रस्तावित रेट: <b>₹' + esc(b.offer) + '</b></div>' : '') +
     (b.note ? '<div class="l">📝 ' + esc(b.note) + '</div>' : '') +
+    (!pro && b.status === 'हाज़िर' ? '<div class="l"><b>🙋 कारीगर हाज़िर हो गया है</b></div>' : '') +
     '<div class="t">' + fmt(b.createdAt) + '</div>' + (acts ? '<div class="acts">' + acts + '</div>' : '') + '</div>';
 }
 async function viewBookings(){
   shell('<header class="hero small"><h1>मेरी बुकिंग</h1><p>आपके सभी ऑर्डर यहाँ दिखेंगे</p><button class="rf" onclick="render()">↻</button></header><section class="pad up" id="content">' + skeleton(2) + '</section>');
   try {
-    const snap = await db.collection('bookings').where('customerId', '==', S.uid).get();
-    const list = snap.docs.map(d => Object.assign({id:d.id}, d.data())).sort((a, b) => ms(b.createdAt) - ms(a.createdAt));
+    const res = await Promise.all([
+      db.collection('bookings').where('customerId', '==', S.uid).get(),
+      db.collection('reviews').where('customerId', '==', S.uid).get().catch(() => null)
+    ]);
+    const list = res[0].docs.map(d => Object.assign({id:d.id}, d.data())).sort((a, b) => ms(b.createdAt) - ms(a.createdAt));
+    S.bk = {}; list.forEach(b => { S.bk[b.id] = b; });
+    S.reviewed = {}; if (res[1]) res[1].docs.forEach(d => { S.reviewed[d.id] = true; });
     if (S.tab !== 'bookings' || S.view) return;
     $('#content').innerHTML = list.length ? list.map(b => bookingCard(b, false)).join('') :
       emptyHTML('🧾', 'अभी कोई बुकिंग नहीं है।<br>किसी सेवा में जाकर पहली बुकिंग करें।');
   } catch (e) {
     if ($('#content')) $('#content').innerHTML = errHTML();
+  }
+}
+
+/* ---------- रेटिंग ---------- */
+function goBookings(){ closeSheet(); S.view = null; S.tab = 'bookings'; render(); window.scrollTo(0, 0); }
+function reviewSheet(id){
+  const b = S.bk[id]; if (!b) return;
+  S.rv = {id:id, n:5};
+  sheet('<h3>⭐ ' + esc(b.providerName) + ' को रेटिंग दें</h3>' +
+    '<div class="stars" id="stars">' + [1, 2, 3, 4, 5].map(i => '<button class="on" onclick="setStar(' + i + ')">★</button>').join('') + '</div>' +
+    '<textarea id="r_c" rows="2" placeholder="अनुभव लिखें (वैकल्पिक)"></textarea>' +
+    '<button class="btn" id="r_go" onclick="sendReview()">रेटिंग भेजें</button>');
+}
+function setStar(n){
+  S.rv.n = n;
+  document.querySelectorAll('#stars button').forEach((el, i) => el.classList.toggle('on', i < n));
+}
+async function sendReview(){
+  const b = S.bk[S.rv.id]; if (!b) return;
+  $('#r_go').disabled = true;
+  try {
+    await db.collection('reviews').doc(S.rv.id).set({
+      bookingId:S.rv.id, customerId:S.uid, customerName:S.profile.name,
+      providerId:b.providerId, service:b.service, rating:S.rv.n,
+      comment:$('#r_c').value.trim().slice(0, 300),
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+    S.reviewed[S.rv.id] = true; closeSheet(); toast('धन्यवाद! रेटिंग मिल गई ⭐'); viewBookings();
+  } catch (e) {
+    $('#r_go').disabled = false; toast('रेटिंग नहीं जा पाई। Firebase के नए Rules डाले हैं?');
   }
 }
 
