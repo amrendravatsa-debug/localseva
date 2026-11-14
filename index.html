@@ -122,7 +122,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--g2)}
 .nav{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;background:#fff;display:flex;gap:4px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;box-shadow:0 -8px 28px rgba(42,29,20,.1);z-index:10}
 .nav button{flex:1;border:0;background:transparent;border-radius:16px;padding:8px 4px;color:var(--mut);font-size:12px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:2px}
 .nav button span{font-size:22px;line-height:1.1}
-.nav button.on{background:#e7f6ef;color:var(--g1);font-weight:700}
+.nav button.on{background:#ffeedd;color:var(--g1);font-weight:700}
 
 /* sheet / toast */
 #bg{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.25s;z-index:20}
@@ -141,6 +141,13 @@ input:focus,textarea:focus,select:focus{border-color:var(--g2)}
 @keyframes rot{to{transform:rotate(360deg)}}
 .vb{display:inline-block;background:#e0f5ea;color:#0a6b46;border-radius:99px;padding:1px 8px;font-size:11px;font-weight:700;margin-left:6px;vertical-align:middle}
 .rt{color:#b7791f;font-weight:700;font-size:13px}
+.chat{display:flex;flex-direction:column;gap:8px;margin:10px 0;max-height:42vh;overflow:auto}
+.bub{max-width:88%;padding:10px 14px;border-radius:18px;font-size:14px;line-height:1.5}
+.bub.bot{background:#fff1e3;align-self:flex-start;border-bottom-left-radius:5px}
+.bub.me{background:var(--g1);color:#fff;align-self:flex-end;border-bottom-right-radius:5px}
+.bub.deal{background:#d9f6e8;color:#0a6b46;font-weight:700}
+.bz{display:flex;gap:8px;align-items:center}.bz input{margin:0;flex:1}.bz button{flex:none;border:0;border-radius:14px;padding:13px 16px;background:var(--g1);color:#fff;font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .tag{display:inline-block;background:#fff1cf;color:#8a5a00;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700;margin-left:6px}
 .chk{display:flex;align-items:center;gap:10px;margin:6px 0 12px;font-weight:500}
 .chk input{width:22px;height:22px;margin:0;flex:none}
@@ -149,6 +156,25 @@ input:focus,textarea:focus,select:focus{border-color:var(--g2)}
 .stars button.on{color:#f5b301}
 .rv{border-top:1px solid var(--line);padding:10px 0;font-size:14px;color:var(--ink);font-weight:400}
 code{background:#eef3f0;padding:2px 6px;border-radius:6px;font-size:13px}
+/* AI सहायक */
+.bub{white-space:pre-line}
+.search .mic{flex:none;border:0;background:#ffeedd;border-radius:50%;width:38px;height:38px;font-size:18px;padding:0}
+.mic.live,.mic2.live{animation:pulse 1s infinite;background:#fca5a5!important}
+.bz .mic2{background:#ffeedd;color:var(--g1);padding:13px 14px}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.aic{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#2b1d14,#7c2d12);color:#fff;border-radius:22px;padding:16px 18px;margin-bottom:14px;cursor:pointer;box-shadow:0 10px 26px rgba(124,45,18,.35)}
+.aic p{opacity:.85;font-size:13px;margin-top:2px}
+.aic>span{margin-left:auto;font-size:24px}
+.orb{flex:none;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#fdba74 40%,#f97316);box-shadow:0 0 22px rgba(249,115,22,.8);animation:breath 2.4s ease-in-out infinite}
+@keyframes breath{50%{transform:scale(1.1);box-shadow:0 0 32px rgba(249,115,22,.95)}}
+.nudge{display:flex;gap:12px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:12px 16px;margin-bottom:14px;cursor:pointer}
+.nudge .ne{font-size:28px}.nudge small{display:block;color:var(--mut)}.nudge .go{margin-left:auto;color:var(--g1);font-size:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.chip{border:1.5px solid var(--line);background:#fff;color:var(--g1);border-radius:99px;padding:8px 14px;font-weight:700;font-size:13px}
+.bub.typing i{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:var(--g1);opacity:.35;animation:blink 1s infinite}
+.bub.typing i:nth-child(2){animation-delay:.2s}.bub.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.orb,.mic.live,.mic2.live,.bub.typing i{animation:none}}
 </style>
 </head>
 <body>
@@ -205,7 +231,7 @@ const fmt = ts => {
 function loadProfile(){ try { return JSON.parse(localStorage.getItem('ls_profile') || 'null'); } catch (e) { return null; } }
 function saveProfile(p){ try { localStorage.setItem('ls_profile', JSON.stringify(p)); } catch (e) {} S.profile = p; }
 
-const S = {tab:'home', view:null, uid:null, profile:loadProfile(), cache:{}, installEv:null, rate:{}, bk:{}, reviewed:{}, rv:null};
+const S = {tab:'home', view:null, uid:null, profile:loadProfile(), cache:{}, installEv:null, rate:{}, bk:{}, reviewed:{}, rv:null, bg:null, deal:null, ai:null};
 let auth = null, db = null;
 
 function toast(msg){
@@ -213,7 +239,7 @@ function toast(msg){
   clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600);
 }
 function sheet(html){ $('#sheet').innerHTML = html; $('#sheet').classList.add('on'); $('#bg').classList.add('on'); }
-function closeSheet(){ $('#sheet').classList.remove('on'); $('#bg').classList.remove('on'); }
+function closeSheet(){ $('#sheet').classList.remove('on'); $('#bg').classList.remove('on'); S.ai = null; try { speechSynthesis.cancel(); } catch (e) {} }
 
 /* ---------- नेविगेशन ---------- */
 function setTab(t){ S.tab = t; S.view = null; render(); window.scrollTo(0, 0); }
@@ -300,11 +326,12 @@ function viewHome(){
   const first = esc((S.profile.name || '').split(' ')[0]);
   shell(
     '<header class="hero"><div class="brandrow">' + LOGO.replace('#fff', '#fff') + '<div><b>हाज़िर</b><small>हर काम में हाज़िर</small></div></div><div class="hello">नमस्ते, ' + first + ' 👋</div><h1>आज कौन-सा काम<br>करवाना है?</h1>' +
-    '<div class="search"><span>🔍</span><input id="q" placeholder="सेवा खोजें…" oninput="filterSvc(this.value)"></div></header>' +
+    '<div class="search"><span>🔍</span><input id="q" placeholder="सेवा खोजें…" oninput="filterSvc(this.value)"><button class="mic" onclick="voiceHome(this)" aria-label="बोलकर खोजें">🎤</button></div></header>' +
     '<section class="pad up">' +
     (S.installEv ? '<div class="install"><span>📲 इसे फ़ोन की होम स्क्रीन पर जोड़ें</span><button onclick="installApp()">इंस्टॉल</button></div>' : '') +
+    '<div class="aic" onclick="aiOpen()"><div class="orb"></div><div><b>🤖 हाज़िर AI सहायक</b><p>बोलिए क्या चाहिए। रेट, मोलभाव और बुकिंग मैं कर दूँगा।</p></div><span>🎤</span></div>' + nudgeHTML() +
     '<div id="svcs" class="grid">' + svcCards(SERVICES) + '</div>' +
-    '<div class="promo"><div class="pe">🎥</div><div><b>वीडियो कॉल पर रेट तय करें</b><p>घर बैठे दुकानदार को देखें और मोलभाव करें।</p></div></div>' +
+    '<div class="promo"><div class="pe">💬</div><div><b>मोलभाव आपके हाथ में</b><p>ऑटो-सहायक से भाव करें, या वीडियो कॉल पर दुकानदार से सीधे।</p></div></div>' +
     '<div class="vach" onclick="vachanSheet()"><div class="pe">🤝</div><div><b>हाज़िर वचन</b><p>हमारे पाँच वादे आपसे</p></div><span>→</span></div>' +
     '<div class="cta" onclick="setTab(\'pro\')"><div><b>आप सेवा देते हैं?</b><p>मुफ़्त रजिस्टर करें और नए ग्राहक पाएँ</p></div><span>→</span></div>' +
     '</section>'
@@ -315,10 +342,21 @@ function viewHome(){
 function stars(n){ n = Math.max(0, Math.min(5, Number(n) || 0)); return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n); }
 function ratingOf(pid){ const r = S.rate[pid]; return r && r.n ? {avg:r.sum / r.n, n:r.n} : null; }
 function ratingHTML(pid){ const r = ratingOf(pid); return r ? '<span class="rt">★ ' + r.avg.toFixed(1) + ' (' + r.n + ')</span>' : '<span class="mut">नया</span>'; }
+function canBargain(p){ return p && p.bargain === true && Number(p.pMin) > 0 && Number(p.pMax) >= Number(p.pMin); }
+function up5(x){ return Math.ceil(x / 5) * 5; }
+/* नियम-आधारित मोलभाव: तीन दौर; हर दौर की स्वीकार-सीमा घटती है, तीसरे में न्यूनतम */
+function bargainReply(p, o, round){
+  const mn = Number(p.pMin), mx = Number(p.pMax), R = mx - mn;
+  const T = [Math.min(mx, up5(mn + 0.5 * R)), Math.min(mx, up5(mn + 0.25 * R)), mn];
+  const thr = T[Math.min(round, 3) - 1];
+  if (o >= thr) return {deal:true, price:Math.min(o, mx), final:false};
+  const counter = Math.max(mn, thr);
+  return {deal:false, counter:counter, final:round >= 3, low:o < mn};
+}
 function pcard(p){
   const s = svc(p.service);
   return '<article class="pc" onclick="go(\'detail\',\'' + esc(p.id) + '\')"><div class="av" style="background:' + s.bg + '">' + s.emoji + '</div>' +
-    '<div class="pi"><b>' + esc(p.name) + (p.verified === true ? '<span class="vb">✔ जाँचा हुआ</span>' : '') + '</b><span>📍 ' + esc(p.area) + ' • ' + ratingHTML(p.id) + '</span><span class="rate">' + esc(p.rate) + '</span></div><span class="chev">›</span></article>';
+    '<div class="pi"><b>' + esc(p.name) + (p.verified === true ? '<span class="vb">✔ जाँचा हुआ</span>' : '') + '</b><span>📍 ' + esc(p.area) + ' • ' + ratingHTML(p.id) + '</span><span class="rate">' + esc(p.rate) + (canBargain(p) ? '<span class="tag">💬 मोलभाव ₹' + p.pMin + '–' + p.pMax + '</span>' : '') + '</span></div><span class="chev">›</span></article>';
 }
 async function viewList(key){
   const s = svc(key);
@@ -353,10 +391,11 @@ function viewDetail(id){
   shell(
     '<div class="dh"><button class="back" onclick="back()">←</button><div class="big">' + s.emoji + '</div><h2>' + esc(p.name) + (p.verified === true ? '<span class="vb" style="background:#fff;">✔ जाँचा हुआ</span>' : '') + '</h2><p>' + s.name + ' • 📍 ' + esc(p.area) + '</p></div>' +
     '<section class="pad up">' +
-    '<div class="info"><small>रेट</small><b>' + esc(p.rate) + '</b></div>' +
+    '<div class="info"><small>रेट</small><b>' + esc(p.rate) + '</b>' + (canBargain(p) ? '<div style="margin-top:6px"><span class="tag" style="margin:0">💬 मोलभाव योग्य: ₹' + p.pMin + ' से ₹' + p.pMax + '</span></div>' : '') + '</div>' +
     '<div class="info"><small>रेटिंग</small><b>' + (rt ? '★ ' + rt.avg.toFixed(1) + ' (' + rt.n + ' समीक्षा)' : 'अभी कोई रेटिंग नहीं') + '</b><div id="rvs"></div></div>' +
     (p.about ? '<div class="info"><small>जानकारी</small><p>' + esc(p.about) + '</p></div>' : '') +
-    '<button class="btn" onclick="startVideo(\'' + esc(id) + '\')">🎥 वीडियो कॉल पर रेट तय करें</button>' +
+    (canBargain(p) ? '<button class="btn" onclick="bargainOpen(\'' + esc(id) + '\')">💬 मोलभाव करें (ऑटो-सहायक)</button>' : '') +
+    '<button class="btn ' + (canBargain(p) ? 'ghost' : '') + '" onclick="startVideo(\'' + esc(id) + '\')">🎥 वीडियो कॉल पर रेट तय करें</button>' +
     '<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/91' + ph + '">💬 WhatsApp पर बात करें</a>' +
     '<a class="btn ghost" href="tel:+91' + ph + '">📞 सीधा कॉल करें</a>' +
     '<button class="btn dark" onclick="bookSheet(\'' + esc(id) + '\')">📅 बुकिंग करें</button>' +
@@ -367,6 +406,57 @@ function viewDetail(id){
     const el = $('#rvs');
     if (el && list.length) el.innerHTML = list.map(x => '<div class="rv"><span class="rt">' + stars(x.rating) + '</span> ' + esc(x.customerName || '') + '<br>' + esc(x.comment) + '</div>').join('');
   }).catch(() => {});
+}
+function bargainOpen(id){
+  const p = S.cache[id]; if (!canBargain(p)) return;
+  S.bg = {id:id, round:0, first:null, msgs:[{w:'bot', t:'नमस्ते 🙏 मैं ' + p.name + ' का ऑटो-सहायक हूँ। रेट ₹' + p.pMax + ' है, पर आपकी बात बन सकती है। आप कितना देना चाहेंगे?'}], done:null, counter:null};
+  bargainRender();
+}
+function bargainRender(){
+  const b = S.bg, p = S.cache[b.id];
+  let foot;
+  if (b.done) {
+    foot = '<button class="btn" onclick="bargainBook()">📅 ₹' + b.done + ' में बुक करें</button>';
+  } else {
+    foot = (b.counter ? '<div class="two"><button class="btn" style="margin-top:0" onclick="bargainAccept()">✔ ₹' + b.counter + ' मंज़ूर</button><button class="btn ghost" style="margin-top:0" onclick="startVideo(\'' + esc(b.id) + '\')">🎥 वीडियो पर बात</button></div><div style="height:10px"></div>' : '') +
+      '<div class="bz"><input id="bz_in" type="tel" inputmode="numeric" maxlength="6" placeholder="आपका भाव ₹"><button onclick="bargainSend()">भेजें</button></div>';
+  }
+  sheet('<h3>💬 मोलभाव: ' + esc(p.name) + '</h3><div class="chat" id="chat">' +
+    b.msgs.map(m => '<div class="bub ' + m.w + (m.deal ? ' deal' : '') + '">' + m.t + '</div>').join('') + '</div>' + foot +
+    '<p class="mut" style="font-size:12px;margin-top:10px">यह ऑटो-सहायक है। अंतिम सहमति कारीगर की बुकिंग स्वीकार करने पर ही मानी जाएगी।</p>');
+  const c = $('#chat'); if (c) c.scrollTop = c.scrollHeight;
+}
+function bargainSend(){
+  const b = S.bg, p = S.cache[b.id];
+  const o = Number(($('#bz_in').value || '').replace(/\D/g, ''));
+  if (!o || o < 1) return toast('अपना भाव लिखें');
+  b.round += 1; if (b.first === null) b.first = o;
+  b.msgs.push({w:'me', t:'₹' + o});
+  const r = bargainReply(p, o, b.round);
+  if (r.deal) {
+    b.done = r.price; b.counter = null;
+    b.msgs.push({w:'bot', deal:true, t:'सौदा पक्का! 🎉 ₹' + r.price + ' में काम हो जाएगा।'});
+  } else if (r.final) {
+    b.counter = r.counter;
+    b.msgs.push({w:'bot', t:'₹' + o + ' में नहीं हो पाएगा। मेरा आख़िरी भाव ₹' + r.counter + ' है, इससे नीचे नहीं जा सकते।'});
+  } else {
+    b.counter = r.counter;
+    const lines = b.round === 1 ? ['₹' + o + ' थोड़ा कम है। ₹' + r.counter + ' में कर देते हैं?'] : ['चलिए, थोड़ा और कम करते हैं: ₹' + r.counter + '।'];
+    b.msgs.push({w:'bot', t:lines[0]});
+  }
+  bargainRender();
+}
+function bargainAccept(){
+  const b = S.bg;
+  b.msgs.push({w:'me', t:'₹' + b.counter + ' मंज़ूर'});
+  b.done = b.counter; b.counter = null;
+  b.msgs.push({w:'bot', deal:true, t:'सौदा पक्का! 🎉 ₹' + b.done + ' में काम हो जाएगा।'});
+  bargainRender();
+}
+function bargainBook(){
+  const b = S.bg;
+  S.deal = {id:b.id, price:b.done, rounds:b.round, first:b.first};
+  bookSheet(b.id);
 }
 function startVideo(id){
   const room = 'hazir-' + id + '-' + S.uid;
@@ -385,7 +475,9 @@ function bookSheet(id){
     '<label>कब चाहिए?</label><input id="b_when" placeholder="जैसे: कल सुबह 10 बजे">' +
     '<label class="chk"><input type="checkbox" id="b_bulk" ' + (dairy ? 'checked' : '') + ' onchange="document.getElementById(\'b_qwrap\').style.display = this.checked ? \'block\' : \'none\'"> 🎉 शादी / बल्क ऑर्डर है</label>' +
     '<div id="b_qwrap" style="display:' + (dairy ? 'block' : 'none') + '"><label>कितना चाहिए?</label><input id="b_qty" placeholder="जैसे: 100 लीटर दूध, 40 किलो दही"></div>' +
-    '<label>आपका प्रस्तावित रेट ₹ (वैकल्पिक, मोलभाव के लिए)</label><input id="b_offer" type="tel" inputmode="numeric" maxlength="7" placeholder="जैसे: 80">' +
+    (S.deal && S.deal.id === id ?
+      '<label>💬 मोलभाव से तय रेट</label><input id="b_offer" value="₹' + S.deal.price + '" readonly style="background:#d9f6e8;font-weight:700">' :
+      '<label>आपका प्रस्तावित रेट ₹ (वैकल्पिक, मोलभाव के लिए)</label><input id="b_offer" type="tel" inputmode="numeric" maxlength="7" placeholder="जैसे: 80">') +
     '<label>काम की जानकारी (वैकल्पिक)</label><textarea id="b_note" rows="2"></textarea>' +
     '<button class="btn" id="b_go" onclick="sendBooking(\'' + esc(id) + '\')">बुकिंग भेजें</button>');
 }
@@ -395,18 +487,21 @@ async function sendBooking(id){
   const bulk = $('#b_bulk').checked, qty = $('#b_qty').value.trim(), offerRaw = ($('#b_offer').value || '').replace(/\D/g, '');
   if (!address || !when) return toast('पता और समय ज़रूर भरें');
   if (bulk && !qty) return toast('मात्रा लिखें, जैसे: 100 लीटर');
-  const offer = offerRaw ? Number(offerRaw) : null;
+  const deal = (S.deal && S.deal.id === id) ? S.deal : null;
+  const offer = deal ? deal.price : (offerRaw ? Number(offerRaw) : null);
   $('#b_go').disabled = true;
   try {
     await db.collection('bookings').add({
       customerId:S.uid, customerName:S.profile.name, customerPhone:S.profile.phone,
       providerId:id, providerName:p.name, providerPhone:p.phone, service:p.service,
       address:address, when:when, note:note, bulk:bulk, qty:bulk ? qty : '', offer:offer, status:'नया',
+      bargained:!!deal, bargainRounds:deal ? deal.rounds : 0, firstOffer:deal ? deal.first : null,
       createdAt:firebase.firestore.FieldValue.serverTimestamp()
     });
     const msg = 'नमस्ते ' + p.name + ', मैंने हाज़िर ऐप पर बुकिंग की है।\nकाम: ' + svc(p.service).name + (bulk ? ' (बल्क: ' + qty + ')' : '') +
-      '\nकब: ' + when + '\nपता: ' + address + (offer ? '\nमेरा प्रस्तावित रेट: ₹' + offer : '') +
+      '\nकब: ' + when + '\nपता: ' + address + (offer ? '\n' + (deal ? 'मोलभाव से तय रेट: ₹' : 'मेरा प्रस्तावित रेट: ₹') + offer : '') +
       '\nकृपया ऐप में देखकर स्वीकार करें। - ' + S.profile.name;
+    S.deal = null;
     sheet('<h3>✅ बुलावा भेज दिया, अब वे हाज़िर होंगे</h3><p class="mut" style="margin-bottom:6px">प्रोवाइडर को WhatsApp पर भी बता दें, जवाब जल्दी मिलेगा।</p>' +
       '<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/91' + esc(p.phone) + '?text=' + encodeURIComponent(msg) + '">💬 WhatsApp पर बताएँ</a>' +
       '<button class="btn ghost" onclick="goBookings()">मेरी बुकिंग देखें</button>');
@@ -429,7 +524,7 @@ function bookingCard(b, pro){
   return '<div class="bc"><div class="r1"><b>' + s.emoji + ' ' + esc(who) + (b.bulk ? '<span class="tag">🎉 बल्क</span>' : '') + '</b><span class="badge ' + (SC[b.status] || 'b-new') + '">' + esc(b.status) + '</span></div>' +
     '<div class="l">🗓 ' + esc(b.when) + '</div><div class="l">📍 ' + esc(b.address) + '</div>' +
     (b.qty ? '<div class="l">📦 ' + esc(b.qty) + '</div>' : '') +
-    (b.offer ? '<div class="l">💬 प्रस्तावित रेट: <b>₹' + esc(b.offer) + '</b></div>' : '') +
+    (b.offer ? '<div class="l">💬 ' + (b.bargained ? 'मोलभाव से तय रेट' : 'प्रस्तावित रेट') + ': <b>₹' + esc(b.offer) + '</b></div>' : '') +
     (b.note ? '<div class="l">📝 ' + esc(b.note) + '</div>' : '') +
     (!pro && b.status === 'हाज़िर' ? '<div class="l"><b>🙋 कारीगर हाज़िर हो गया है</b></div>' : '') +
     '<div class="t">' + fmt(b.createdAt) + '</div>' + (acts ? '<div class="acts">' + acts + '</div>' : '') + '</div>';
@@ -483,6 +578,27 @@ async function sendReview(){
 }
 
 /* ---------- प्रोवाइडर पैनल ---------- */
+function bargainFields(p){
+  const on = p ? p.bargain === true : false;
+  return '<div class="info" style="margin-top:6px"><label class="sw"><span><b>💬 मोलभाव की छूट दें</b><br><span class="mut" style="font-size:13px">ऑटो-सहायक आपकी तरफ़ से ग्राहक से भाव करेगा, आपकी तय सीमा में।</span></span>' +
+    '<input type="checkbox" id="p_bg" ' + (on ? 'checked' : '') + '><span class="tg"></span></label>' +
+    '<label>शुरुआती रेट ₹ (ज़्यादा से ज़्यादा)</label><input id="p_max" type="tel" inputmode="numeric" maxlength="6" placeholder="जैसे: 400" value="' + (p && p.pMax ? esc(p.pMax) : '') + '">' +
+    '<label>सबसे कम रेट ₹ (इससे नीचे नहीं)</label><input id="p_min" type="tel" inputmode="numeric" maxlength="6" placeholder="जैसे: 300" value="' + (p && p.pMin ? esc(p.pMin) : '') + '">' +
+    '<small class="mut">ग्राहकों को यह दायरा दिखेगा, जैसे "₹300 से ₹400"। भाव-तोल में ज़्यादातर ग्राहक बीच का रेट देते हैं।</small></div>';
+}
+function readBargain(){
+  const on = $('#p_bg').checked;
+  const mx = Number(($('#p_max').value || '').replace(/\D/g, '')), mn = Number(($('#p_min').value || '').replace(/\D/g, ''));
+  if (!on) return {bargain:false, pMax:mx || 0, pMin:mn || 0};
+  if (!mx || !mn) { toast('मोलभाव के लिए दोनों रेट भरें'); return null; }
+  if (mn > mx) { toast('"सबसे कम" रेट, "शुरुआती" रेट से ज़्यादा नहीं हो सकता'); return null; }
+  return {bargain:true, pMax:mx, pMin:mn};
+}
+async function saveBargain(){
+  const bg = readBargain(); if (!bg) return;
+  try { await db.collection('providers').doc(S.uid).update(bg); toast('मोलभाव की सेटिंग सेव हो गई'); viewPro(); }
+  catch (e) { toast('सेव नहीं हो पाया'); }
+}
 function proForm(){
   return '<div class="card"><h3 style="margin-bottom:6px">प्रोवाइडर बनें</h3><p class="mut" style="margin-bottom:14px">अपनी सेवा जोड़ें, नए ग्राहक आपको खुद खोजेंगे। अभी बिल्कुल मुफ़्त।</p>' +
     '<label>आपकी सेवा</label><select id="p_service">' + SERVICES.map(s => '<option value="' + s.key + '">' + s.emoji + ' ' + s.name + '</option>').join('') + '</select>' +
@@ -490,6 +606,7 @@ function proForm(){
     '<label>फ़ोन / WhatsApp नंबर</label><input id="p_phone" type="tel" inputmode="numeric" maxlength="10" value="' + esc(S.profile.phone) + '">' +
     '<label>इलाका / मोहल्ला</label><input id="p_area" placeholder="जैसे: गोड्डा बाज़ार">' +
     '<label>रेट</label><input id="p_rate" placeholder="जैसे: ₹100 कटिंग / ₹60 प्रति लीटर">' +
+    bargainFields(null) +
     '<label>अपने बारे में (वैकल्पिक)</label><textarea id="p_about" rows="2" placeholder="अनुभव, समय, खासियत…"></textarea>' +
     '<button class="btn" id="p_go" onclick="saveProvider()">रजिस्टर करें</button></div>';
 }
@@ -497,6 +614,8 @@ async function saveProvider(){
   const v = id => $(id).value.trim();
   const data = {service:v('#p_service'), name:v('#p_name'), phone:v('#p_phone'), area:v('#p_area'), rate:v('#p_rate'), about:v('#p_about')};
   if (!data.name || !data.area || !data.rate) return toast('नाम, इलाका और रेट ज़रूर भरें');
+  const bg = readBargain(); if (!bg) return;
+  Object.assign(data, bg);
   if (!/^[6-9]\d{9}$/.test(data.phone)) return toast('सही 10 अंकों का नंबर डालें');
   $('#p_go').disabled = true;
   try {
@@ -526,6 +645,7 @@ async function viewPro(){
     $('#content').innerHTML =
       '<div class="card"><label class="sw"><span><b>' + s.emoji + ' ' + esc(p.name) + '</b><br><span class="mut" style="font-size:13px">' + (p.active ? 'आप ग्राहकों को दिख रहे हैं' : 'आप अभी छिपे हुए हैं') + '</span></span>' +
       '<input type="checkbox" ' + (p.active ? 'checked' : '') + ' onchange="toggleActive(this.checked)"><span class="tg"></span></label></div>' +
+      '<h3 class="sec">💬 मोलभाव की सेटिंग</h3>' + bargainFields(p) + '<button class="btn ghost" style="margin-top:0" onclick="saveBargain()">सेव करें</button>' +
       '<h3 class="sec">🎥 वीडियो बातचीत के अनुरोध</h3>' +
       (vids.length ? vids.map(v => '<div class="bc"><div class="r1"><b>' + esc(v.customerName || 'ग्राहक') + '</b><a class="mini" target="_blank" rel="noopener" href="https://meet.jit.si/' + esc(v.room) + '">जुड़ें</a></div><div class="t">' + fmt(v.createdAt) + '</div></div>').join('') : '<p class="mut">अभी कोई अनुरोध नहीं</p>') +
       '<h3 class="sec">🧾 मेरे ऑर्डर</h3>' +
@@ -539,6 +659,317 @@ function toggleActive(on){
 }
 function setStatus(id, st){
   db.collection('bookings').doc(id).update({status:st}).then(() => { toast('अपडेट हो गया'); viewPro(); }).catch(() => toast('अपडेट नहीं हो पाया'));
+}
+
+/* ---------- AI सहायक (आवाज़ + समझ + मोलभाव + बुकिंग) ---------- */
+/* यह ऐप के अंदर चलने वाला नियम-आधारित सहायक है: मुफ़्त, बिना सर्वर और बिना API कुंजी के। */
+const nz = s => String(s == null ? '' : s).normalize('NFD').replace(/़/g, '').toLowerCase();
+function has(t, w){
+  const star = w.slice(-1) === '*'; if (star) w = w.slice(0, -1);
+  w = nz(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const latin = /^[a-z0-9 ]+$/.test(w);
+  const re = latin ? '(^|[^a-z0-9])' + w + (star ? '' : '(?![a-z0-9])')
+                   : '(^|[^\\u0900-\\u097F])' + w + (star ? '' : '(?![\\u0915-\\u0939\\u0958-\\u095F\\u094D])');
+  return new RegExp(re).test(t);
+}
+const KW = {
+  barber:['नाई','बाल','बालों','कटिंग','दाढ़ी','हजामत','सैलून','हेयर','शेव','haircut','barber'],
+  plumber:['नल','पाइप','प्लंबर','लीक*','टपक*','बाथरूम','टोंटी','टंकी','नाली','फ्लश'],
+  electrician:['बिजली','पंखा','वायरिंग','स्विच','इलेक्ट्रीशियन','बल्ब','करंट','इन्वर्टर','मीटर','लाइट','शॉर्ट'],
+  laundry:['कपड़े','कपड़ा','धुलाई','प्रेस','लॉन्ड्री','इस्त्री','धोबी'],
+  dairy:['दूध','दही','डेयरी','पनीर','घी','छाछ','लस्सी'],
+  pandit:['पंडित','पूजा','कथा','मुहूर्त','गृह प्रवेश','गृहप्रवेश','सत्यनारायण','हवन','पाठ','जनेऊ','श्राद्ध'],
+  appliance:['ac','एसी','फ्रिज','वॉशिंग','मशीन','कूलर','टीवी','गीजर','रेफ्रिजरेटर'],
+  tent:['टेंट','कैटरिंग','भोज','हलवाई','पंडाल','शामियाना','डेकोरेशन'],
+  mistri:['मिस्त्री','कारपेंटर','फर्नीचर','पेंट','रंग','दरवाजा','ताला','खिड़की','टाइल','प्लास्टर'],
+  cleaning:['सफाई','सफाइ','कीट','दीमक','मच्छर','कॉकरोच','सैनिटाइज','टंकी की सफाई','टंकी सफाई'],
+  beauty:['ब्यूटी','ब्यूटीशियन','मेकअप','फेशियल','दुल्हन','श्रृंगार','पार्लर','वैक्स','थ्रेडिंग','मेहंदी'],
+  maid:['मेड','बाई','झाड़ू','पोछा','बर्तन','घरेलू','कामवाली'],
+  banquet:['बैंक्वेट','पार्टी हॉल','रिसेप्शन','सगाई','बर्थडे','हॉल'],
+  marriage:['मैरेज हॉल','मैरेज','विवाह भवन','शादी का हॉल','लॉन','धर्मशाला'],
+  hotel:['होटल','लॉज','कमरा','कमरे','ठहरना','रुकना']
+};
+const BULK_SVC = ['dairy','tent','banquet','marriage','hotel'];
+const BULK_WORDS = ['शादी','ब्याह','बारात','भोज','पार्टी','थोक','बल्क','विवाह'];
+const HN = {'एक':1,'दो':2,'तीन':3,'चार':4,'पांच':5,'पाँच':5,'छह':6,'छः':6,'सात':7,'आठ':8,'नौ':9,'दस':10,'ग्यारह':11,'बारह':12};
+
+function detectService(raw){
+  const t = nz(raw); let best = null, sc = 0;
+  for (const k in KW) { let c = 0; KW[k].forEach(w => { if (has(t, w)) c++; }); if (c > sc) { sc = c; best = k; } }
+  return best;
+}
+function parseWhen(raw){
+  const t = nz(raw), p = [];
+  ['अभी','आज','कल','परसों'].forEach(w => { if (has(t, w)) p.push(w); });
+  ['सुबह','दोपहर','शाम','रात'].forEach(w => { if (has(t, w)) p.push(w); });
+  const m = t.match(/(\d{1,2})\s*बजे/);
+  if (m) p.push(m[1] + ' बजे');
+  else for (const k in HN) { if (has(t, k + ' बजे')) { p.push(HN[k] + ' बजे'); break; } }
+  return p.join(' ');
+}
+function parseQty(raw){
+  const m = nz(raw).match(/(\d+)\s*(लीटर|ltr|kg|किलो|लोग|मेहमान|आदमी|पैकेट|प्लेट|कमरे|कमरा)/);
+  return m ? m[1] + ' ' + m[2] : '';
+}
+function parsePrice(raw){
+  const t = nz(raw);
+  let m = t.match(/(?:₹|रुपये|रुपए|रुपया|रु\.?|rs\.?)\s*(\d{2,6})/) || t.match(/(\d{2,6})\s*(?:₹|रुपये|रुपए|रुपया|रु\b|rs\b)/);
+  return m ? Number(m[1]) : 0;
+}
+function isBulk(raw){ const t = nz(raw); return BULK_WORDS.some(w => has(t, w)); }
+/*PURE-END*/
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function lsGet(k){ try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
+
+/* ---------- आवाज़ ---------- */
+let REC = null;
+function listen(onText, btn){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) return toast('इस ब्राउज़र में आवाज़ नहीं चलती। Chrome में खोलें।');
+  try { if (REC) REC.stop(); } catch (e) {}
+  const r = new SR(); REC = r;
+  r.lang = 'hi-IN'; r.interimResults = false; r.maxAlternatives = 1;
+  if (btn) btn.classList.add('live');
+  toast('🎤 बोलिए…');
+  r.onresult = e => { const t = e.results[0] && e.results[0][0] && e.results[0][0].transcript; if (t) onText(t); };
+  r.onerror = e => { toast(e.error === 'not-allowed' ? 'माइक की अनुमति दें' : 'सुन नहीं पाया, दोबारा बोलें'); };
+  r.onend = () => { if (btn) btn.classList.remove('live'); if (REC === r) REC = null; };
+  try { r.start(); } catch (e) {}
+}
+function speak(t){
+  const a = S.ai; if (!a || !a.voice || !('speechSynthesis' in window)) return;
+  try {
+    const clean = String(t).replace(/₹\s*(\d+)/g, '$1 रुपये').replace(/[\u{1F300}-\u{1FAFF}☀-➿•✅✔]/gu, '').replace(/\n+/g, '। ');
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(clean); u.lang = 'hi-IN'; u.rate = 1;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+function voiceHome(btn){ listen(t => aiOpen(t), btn); }
+
+/* ---------- मौसम के हिसाब से सुझाव ---------- */
+function nudge(){
+  const m = new Date().getMonth() + 1;
+  if (m >= 11 || m <= 2) return {e:'💒', t:'शादी का सीज़न चल रहा है', s:'दूध-दही, टेंट और हॉल अभी बुक करें', q:'शादी के लिए 100 लीटर दूध चाहिए'};
+  if (m >= 3 && m <= 6) return {e:'❄️', t:'गर्मी आ रही है', s:'AC और कूलर की सर्विस अभी करवाएँ', q:'AC की सर्विस करवानी है'};
+  return {e:'🔧', t:'बरसात का मौसम', s:'टंकी, नल और बिजली की जाँच करवाएँ', q:'टंकी की सफाई करवानी है'};
+}
+function nudgeHTML(){
+  const n = nudge();
+  return '<div class="nudge" onclick="aiOpen(nudge().q)"><span class="ne">' + n.e + '</span><div><b>' + n.t + '</b><small>' + n.s + '</small></div><span class="go">→</span></div>';
+}
+
+/* ---------- चैट की बुनियाद ---------- */
+const EXAMPLES = ['कल सुबह घर पर नाई चाहिए', 'नल टपक रहा है', 'शादी के लिए 100 लीटर दूध', 'AC की सर्विस करवानी है'];
+function addBub(w, t, extra){
+  const c = $('#chat'); if (!c) return null;
+  const d = document.createElement('div'); d.className = 'bub ' + w + (extra ? ' ' + extra : '');
+  d.textContent = t; c.appendChild(d); c.scrollTop = c.scrollHeight; return d;
+}
+async function botSay(t, extra){
+  const a = S.ai, c = $('#chat'); if (!c) return;
+  const d = document.createElement('div'); d.className = 'bub bot typing'; d.innerHTML = '<i></i><i></i><i></i>';
+  c.appendChild(d); c.scrollTop = c.scrollHeight;
+  await sleep(350 + Math.min(String(t).length * 6, 600));
+  if (S.ai !== a || !d.isConnected) return;
+  d.className = 'bub bot' + (extra ? ' ' + extra : ''); d.textContent = t; c.scrollTop = c.scrollHeight; speak(t);
+}
+function setChips(list){
+  const el = $('#ai_chips'); if (!el) return;
+  el.innerHTML = '';
+  list.forEach(x => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = x.t; b.onclick = x.fn; el.appendChild(b); });
+}
+const exChips = () => EXAMPLES.map(t => ({t:t, fn:() => aiHandle(t)}));
+async function aiRun(fn){
+  const a = S.ai; if (!a || a.busy) return;
+  a.busy = true;
+  try { await fn(a); } catch (e) { console.error(e); } finally { if (S.ai === a) a.busy = false; }
+}
+
+function aiOpen(pre){
+  const first = (S.profile.name || '').split(' ')[0];
+  S.ai = {svc:null, provs:null, p:null, when:'', addr:'', qty:'', bulk:false, budget:0, price:undefined, deal:null, stage:'need', voice:false, busy:false, intro:false};
+  sheet('<h3>🤖 हाज़िर AI सहायक</h3><div class="chat" id="chat" style="max-height:46vh"></div><div class="chips" id="ai_chips"></div>' +
+    '<div class="bz"><input id="ai_in" placeholder="बोलिए या लिखिए…" autocomplete="off"><button class="mic2" id="ai_mic" onclick="aiMic()">🎤</button><button onclick="aiSubmit()">भेजें</button></div>' +
+    '<p class="mut" style="font-size:12px;margin-top:10px">यह ऑटो-सहायक है। रेट की अंतिम सहमति कारीगर के बुकिंग स्वीकार करने पर मानी जाएगी।</p>');
+  $('#ai_in').addEventListener('keydown', e => { if (e.key === 'Enter') aiSubmit(); });
+  const a = S.ai;
+  aiRun(async () => {
+    await botSay('नमस्ते ' + first + ' 🙏 मैं हाज़िर AI सहायक हूँ। बताइए क्या चाहिए। मैं सही कारीगर ढूँढूँगा, रेट पर मोलभाव करूँगा और बुकिंग भी कर दूँगा।');
+    if (S.ai !== a) return;
+    setChips(exChips());
+  }).then(() => { if (pre && S.ai === a) aiHandle(pre); });
+}
+function aiSubmit(){
+  const inp = $('#ai_in'); if (!inp || !S.ai) return;
+  const v = inp.value.trim(); if (!v) return;
+  if (S.ai.busy) return toast('एक सेकंड…');
+  inp.value = ''; aiHandle(v);
+}
+function aiMic(){
+  if (!S.ai) return;
+  S.ai.voice = true;
+  listen(t => { if (S.ai && !S.ai.busy) aiHandle(t); else toast('एक सेकंड रुककर बोलिए'); }, $('#ai_mic'));
+}
+
+/* ---------- समझना और अगला क़दम ---------- */
+function aiHandle(text){
+  return aiRun(async a => {
+    addBub('me', text); setChips([]);
+    if (/^\s*(नहीं|रहने दो|कैंसिल|रद्द|छोड़ो)/.test(nz(text)) && a.stage !== 'price') {
+      Object.assign(a, {svc:null, provs:null, p:null, when:'', addr:'', qty:'', bulk:false, budget:0, price:undefined, deal:null, stage:'need', intro:false});
+      await botSay('ठीक है, रद्द कर दिया। नया काम बताइए।'); setChips(exChips()); return;
+    }
+    if (a.stage === 'addr') {
+      a.addr = text.trim();
+    } else if (a.stage === 'when') {
+      a.when = parseWhen(text) || text.trim().slice(0, 40);
+    } else if (a.stage === 'qty') {
+      a.qty = parseQty(text) || text.trim().slice(0, 40);
+    } else {
+      const k = detectService(text);
+      if (k && k !== a.svc) { a.svc = k; a.provs = null; a.p = null; a.price = undefined; a.deal = null; a.intro = false; }
+      const w = parseWhen(text); if (w) a.when = w;
+      const q = parseQty(text); if (q) a.qty = q;
+      if (isBulk(text)) a.bulk = true;
+    }
+    const pr = parsePrice(text) || (a.stage === 'price' ? (Number((text.match(/^\s*₹?\s*(\d{2,6})\s*$/) || [])[1]) || 0) : 0);
+    if (pr) a.budget = pr;
+    if (a.svc && BULK_SVC.indexOf(a.svc) >= 0) a.bulk = true;
+    await aiNext(a);
+  });
+}
+function aiIntro(a){
+  const p = a.p, s = svc(a.svc), r = ratingOf(p.id);
+  const lo = Math.min.apply(null, a.provs.filter(canBargain).map(x => Number(x.pMin)).concat([1e9]));
+  const hi = Math.max.apply(null, a.provs.filter(canBargain).map(x => Number(x.pMax)).concat([0]));
+  return s.emoji + ' ' + s.name + ' की ज़रूरत समझ गया।\n✅ सबसे अच्छा विकल्प: ' + p.name + ' (' + p.area + ')' +
+    (p.verified === true ? ' ✔ जाँचा हुआ' : '') + (r ? ' ★' + r.avg.toFixed(1) : '') + '\nरेट: ' + p.rate +
+    (lo < 1e9 ? '\nइस काम का आम दायरा: ₹' + lo + ' से ₹' + hi : '') +
+    (a.provs.length > 1 ? '\n(' + (a.provs.length - 1) + ' और विकल्प भी हैं)' : '');
+}
+async function loadProvs(a){
+  const res = await Promise.all([
+    db.collection('providers').where('service', '==', a.svc).where('active', '==', true).get(),
+    db.collection('reviews').where('service', '==', a.svc).get().catch(() => null)
+  ]);
+  const rate = {};
+  if (res[1]) res[1].docs.forEach(d => { const r = d.data(); const e = rate[r.providerId] || (rate[r.providerId] = {sum:0, n:0}); e.sum += Number(r.rating) || 0; e.n += 1; });
+  const docs = res[0].docs.map(d => Object.assign({id:d.id}, d.data()));
+  docs.forEach(d => { S.cache[d.id] = d; if (rate[d.id]) S.rate[d.id] = rate[d.id]; });
+  const score = p => (p.verified === true ? 10 : 0) + (rate[p.id] ? rate[p.id].sum / rate[p.id].n : 0) + (canBargain(p) ? 1 : 0);
+  docs.sort((x, y) => (score(y) - score(x)) || (ms(y.createdAt) - ms(x.createdAt)));
+  a.provs = docs;
+}
+function aiOther(){
+  return aiRun(async a => {
+    const i = (a.provs.indexOf(a.p) + 1) % a.provs.length;
+    a.p = a.provs[i]; a.price = undefined; a.deal = null; a.intro = false;
+    await aiNext(a);
+  });
+}
+async function aiNext(a){
+  if (!a.svc) {
+    a.stage = 'need';
+    await botSay('बताइए, कौन-सा काम करवाना है? जैसे: "नल टपक रहा है" या "कल सुबह नाई चाहिए"।');
+    setChips(exChips()); return;
+  }
+  if (!a.provs) {
+    try { await loadProvs(a); } catch (e) { await botSay('इंटरनेट की दिक्कत है, डेटा नहीं आया। थोड़ी देर बाद कोशिश करें।'); return; }
+    if (S.ai !== a) return;
+  }
+  if (!a.provs.length) {
+    const s = svc(a.svc); a.svc = null; a.provs = null; a.stage = 'need';
+    await botSay(s.emoji + ' ' + s.name + ' में अभी कोई प्रोवाइडर जुड़ा नहीं है। कोई और काम बताइए।');
+    setChips(exChips()); return;
+  }
+  if (!a.p) a.p = a.provs[0];
+  if (!a.intro) { a.intro = true; await botSay(aiIntro(a)); if (S.ai !== a) return; }
+  const other = a.provs.length > 1 ? [{t:'🔄 दूसरा प्रोवाइडर', fn:() => aiOther()}] : [];
+
+  if (!a.when) {
+    a.stage = 'when';
+    await botSay('कब चाहिए? जैसे: कल सुबह 10 बजे');
+    setChips(['आज शाम', 'कल सुबह', 'कल शाम'].map(t => ({t:t, fn:() => aiHandle(t)})).concat(other)); return;
+  }
+  if (!a.addr) {
+    a.stage = 'addr';
+    await botSay('आपका पता / मोहल्ला क्या है?');
+    const last = lsGet('ls_addr');
+    setChips((last ? [{t:'📍 ' + last.slice(0, 28), fn:() => aiHandle(last)}] : []).concat(other)); return;
+  }
+  if (a.bulk && !a.qty) {
+    a.stage = 'qty';
+    await botSay('कितनी मात्रा चाहिए? जैसे: 100 लीटर, 300 मेहमान, 5 कमरे');
+    setChips(other); return;
+  }
+  if (canBargain(a.p) && a.price === undefined) {
+    if (a.budget) { await aiBargain(a); return; }
+    a.stage = 'price';
+    await botSay('रेट ₹' + a.p.pMax + ' है, पर बात बन सकती है। आप कितना देना चाहेंगे? भाव बोलिए, या मैं आपकी तरफ़ से मोलभाव कर दूँ।');
+    setChips([{t:'🤖 AI मोलभाव करे', fn:() => aiRun(x => aiBargain(x))}, {t:'👍 रेट ठीक है', fn:() => aiRun(async x => { x.price = Number(x.p.pMax); addBub('me', 'रेट ठीक है'); await aiNext(x); })}]);
+    return;
+  }
+  if (a.price === undefined) a.price = null;
+  a.stage = 'confirm';
+  const p = a.p, s = svc(a.svc);
+  await botSay('📋 बुकिंग तैयार:\n• काम: ' + s.name + '\n• प्रोवाइडर: ' + p.name + '\n• कब: ' + a.when + '\n• पता: ' + a.addr +
+    (a.qty ? '\n• मात्रा: ' + a.qty : '') + (a.price ? '\n• रेट: ₹' + a.price + (a.deal ? ' (मोलभाव से)' : '') : '') + '\n\nपक्का करूँ?');
+  setChips([{t:'✅ हाँ, बुक करो', fn:() => aiRun(x => aiConfirm(x))},
+    {t:'✏️ बदलें', fn:() => aiRun(async x => { x.when = ''; x.addr = ''; x.price = undefined; x.deal = null; x.stage = 'need'; addBub('me', 'बदलना है'); await aiNext(x); })}].concat(other));
+}
+
+/* ---------- AI मोलभाव (ग्राहक की तरफ़ से, प्रोवाइडर की तय सीमा के भीतर) ---------- */
+async function aiBargain(a){
+  const p = a.p, mn = Number(p.pMin), mx = Number(p.pMax);
+  const goal = a.budget || up5(mn * 1.1);
+  let offer = Math.max(mn, a.budget ? Math.min(a.budget, mx) : mn), first = null, deal = null, round = 0;
+  if (a.budget && a.budget < mn) await botSay('₹' + a.budget + ' इस काम के सबसे कम रेट से नीचे है। मैं सबसे कम संभव भाव से शुरू करता हूँ।');
+  await botSay('ठीक है, मैं आपकी तरफ़ से ' + p.name + ' के सहायक से बात करता हूँ। 🤝');
+  while (round < 3) {
+    if (S.ai !== a) return;
+    round += 1; if (first === null) first = offer;
+    addBub('me', '🤖 मेरी तरफ़ से: ₹' + offer);
+    await sleep(400);
+    const r = bargainReply(p, offer, round);
+    if (r.deal) { deal = r.price; await botSay('सौदा पक्का: ₹' + deal + ' 🎉', 'deal'); break; }
+    await botSay(p.name + ' का सहायक: ₹' + r.counter + ' में कर देंगे।');
+    if (r.counter <= goal || r.final) {
+      deal = r.counter; addBub('me', '🤖 ₹' + deal + ' मंज़ूर');
+      await botSay('सौदा पक्का: ₹' + deal + ' 🎉', 'deal'); break;
+    }
+    offer = Math.min(mx, Math.max(offer, up5(mn + (r.counter - mn) * 0.3)));
+  }
+  a.price = deal; a.deal = {price:deal, rounds:round, first:first};
+  await aiNext(a);
+}
+
+/* ---------- बुकिंग पक्की ---------- */
+async function aiConfirm(a){
+  const p = a.p, deal = a.deal, offer = a.price || null;
+  addBub('me', 'हाँ, बुक करो'); setChips([]);
+  try {
+    await db.collection('bookings').add({
+      customerId:S.uid, customerName:S.profile.name, customerPhone:S.profile.phone,
+      providerId:p.id, providerName:p.name, providerPhone:p.phone, service:p.service,
+      address:a.addr, when:a.when, note:'🤖 हाज़िर AI सहायक से बुक', bulk:!!a.bulk, qty:a.bulk ? a.qty : '', offer:offer, status:'नया',
+      bargained:!!deal, bargainRounds:deal ? deal.rounds : 0, firstOffer:deal ? deal.first : null,
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
+  } catch (e) {
+    await botSay('बुकिंग नहीं हो पाई। इंटरनेट देखकर दोबारा कोशिश करें।');
+    setChips([{t:'🔁 दोबारा कोशिश', fn:() => aiRun(x => aiConfirm(x))}]); return;
+  }
+  lsSet('ls_addr', a.addr);
+  const msg = 'नमस्ते ' + p.name + ', मैंने हाज़िर ऐप पर बुकिंग की है।\nकाम: ' + svc(p.service).name + (a.bulk && a.qty ? ' (' + a.qty + ')' : '') +
+    '\nकब: ' + a.when + '\nपता: ' + a.addr + (offer ? '\n' + (deal ? 'मोलभाव से तय रेट: ₹' : 'रेट: ₹') + offer : '') +
+    '\nकृपया ऐप में देखकर स्वीकार करें। - ' + S.profile.name;
+  a.stage = 'done';
+  await botSay('✅ बुकिंग भेज दी। ' + p.name + ' स्वीकार करेंगे तो आपको "मेरी बुकिंग" में दिखेगा। WhatsApp पर भी बता दें, जवाब जल्दी मिलेगा।');
+  setChips([{t:'💬 WhatsApp पर बताएँ', fn:() => window.open('https://wa.me/91' + p.phone + '?text=' + encodeURIComponent(msg), '_blank', 'noopener')},
+    {t:'🧾 मेरी बुकिंग', fn:() => { closeSheet(); goBookings(); }}]);
 }
 
 /* ---------- शुरुआत ---------- */
