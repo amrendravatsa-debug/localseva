@@ -64,7 +64,7 @@ service cloud.firestore {
         && d.customerPhone is string && d.customerPhone.matches('^[6-9][0-9]{9}$')
         && p.get('active', false) == true
         && p.get('suspended', false) == false
-        && d.service == p.service
+        && d['service'] == p['service']
         && d.providerName == p.name
         && d.providerPhone == ''
         && strIn(d.address, 1, 300) && strIn(d.when, 1, 100) && strIn(d.note, 0, 500)
@@ -86,7 +86,7 @@ service cloud.firestore {
         && b.customerId == request.auth.uid
         && b.status == 'पूरा'
         && b.providerId == d.providerId
-        && d.service == b.service
+        && d['service'] == b['service']
         && strIn(d.customerName, 1, 80)
         && (!('comment' in d) || strIn(d.comment, 0, 300))
         && d.createdAt == request.time;
@@ -100,7 +100,7 @@ service cloud.firestore {
       allow create: if signedIn() && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['service','name','area','rate','about','bargain','pMax','pMin','active','createdAt','lat','lng','freeKm','perKm','maxKm','upi','terms','ref'])
         && request.resource.data.keys().hasAll(['service','name','area','rate','bargain','pMax','pMin','active','createdAt','terms'])
-        && validService(request.resource.data.service)
+        && validService(request.resource.data['service'])
         && strIn(request.resource.data.name, 1, 80)
         && strIn(request.resource.data.area, 1, 80)
         && strIn(request.resource.data.rate, 1, 80)
