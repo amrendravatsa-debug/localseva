@@ -1235,7 +1235,7 @@ async function doDeleteAccount(){
   } catch (e) { btn.disabled = false; toast(L('हट नहीं पाया, दोबारा कोशिश करें', 'Could not delete, try again')); }
 }
 function acctLinks(){
-  return ((S.blocks || []).length ? '<div style="text-align:center;margin-top:16px"><a href="#" onclick="clearBlocks();return false" class="mut" style="font-size:13px">🚫 ' + L('ब्लॉक की सूची साफ़ करें', 'Clear my block list') + ' (' + S.blocks.length + ')</a></div>' : '') + '<div class="mut" style="text-align:center;margin:20px 0 6px;font-size:13px"><a href="privacy.html" target="_blank" rel="noopener">🔒 ' + L('गोपनीयता नीति', 'Privacy policy') + '</a> &nbsp;•&nbsp; <a href="#" onclick="deleteAcctSheet(); return false;">🗑 ' + L('खाता हटाएँ', 'Delete account') + '</a></div>';
+  return (isAnon() ? '<div style="text-align:center;margin-top:16px"><a href="#" onclick="googleLink().then(() => { if (isAdminUI()) go(\'admin\'); }); return false" class="mut" style="font-size:13px">🔑 ' + L('मालिक / स्टाफ़ लॉगिन (Google)', 'Owner / staff login (Google)') + '</a></div>' : '') + ((S.blocks || []).length ? '<div style="text-align:center;margin-top:16px"><a href="#" onclick="clearBlocks();return false" class="mut" style="font-size:13px">🚫 ' + L('ब्लॉक की सूची साफ़ करें', 'Clear my block list') + ' (' + S.blocks.length + ')</a></div>' : '') + '<div class="mut" style="text-align:center;margin:20px 0 6px;font-size:13px"><a href="privacy.html" target="_blank" rel="noopener">🔒 ' + L('गोपनीयता नीति', 'Privacy policy') + '</a> &nbsp;•&nbsp; <a href="#" onclick="deleteAcctSheet(); return false;">🗑 ' + L('खाता हटाएँ', 'Delete account') + '</a></div>';
 }
 
 /* ---------- चरण B: कमीशन, बकाया, साथी, एडमिन ---------- */
