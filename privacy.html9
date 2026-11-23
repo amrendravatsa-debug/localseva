@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>hazirbro.co.in – गोपनीयता नीति / Privacy Policy</title>
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:0 auto;padding:20px 16px 60px;line-height:1.6;color:#1b2a2a}h1{font-size:24px}h2{font-size:18px;margin-top:26px}a{color:#0a7a5a}.box{background:#eef7f3;padding:12px 14px;border-radius:10px}</style></head><body>
+<h1>hazirbro.co.in – गोपनीयता नीति</h1>
+<p>अंतिम अपडेट: 14 नवंबर 2026 • Last updated: 14 Nov 2026</p>
+<div class="box"><b>संक्षेप में:</b> हम सिर्फ़ उतनी जानकारी लेते हैं जितनी बुकिंग के लिए ज़रूरी है। आपका डेटा बेचा नहीं जाता। आप ऐप के अंदर से अपना खाता और डेटा हटा सकते हैं।<br><b>In short:</b> we collect only what a booking needs, we never sell your data, and you can delete your account inside the app.</div>
+
+<h2>1. हम कौन-सी जानकारी लेते हैं</h2>
+<ul>
+<li><b>ग्राहक:</b> नाम, मोबाइल नंबर, बुकिंग का पता, समय, काम का विवरण, रेटिंग और टिप्पणी।</li>
+<li><b>प्रोवाइडर/साथी:</b> नाम, सेवा, इलाका, मोबाइल नंबर, रेट, UPI ID, और (आपकी अनुमति से) अनुमानित स्थान।</li>
+<li><b>स्थान (GPS):</b> सिर्फ़ तब जब आप "जगह चालू करें" दबाएँ। इसे पास के कारीगर दिखाने और दूरी निकालने के लिए इस्तेमाल करते हैं। ग्राहक का सटीक स्थान हम सर्वर पर नहीं रखते; वह आपके फ़ोन में रहता है।</li>
+<li><b>आवाज़:</b> माइक सिर्फ़ तब चलता है जब आप AI सहायक में बोलने का बटन दबाएँ। आवाज़ फ़ोन/ब्राउज़र की सेवा से लिखित रूप में बदलती है; हम आवाज़ की रिकॉर्डिंग नहीं रखते।</li>
+<li><b>लॉगिन:</b> Firebase Authentication (गुमनाम ID; प्रोवाइडर/साथी के लिए Google खाता)।</li>
+<li><b>ऐप की गिनती:</b> हर फ़ोन की गुमनाम ID के साथ पहली और आख़िरी बार ऐप खुलने की तारीख़, फ़ोन का प्रकार (Android/iPhone/अन्य), ऐप की भाषा, और ऐप होम-स्क्रीन से चल रहा है या नहीं। इसमें आपका नाम या नंबर नहीं होता। यह सिर्फ़ यह जानने के लिए है कि कितने लोग ऐप इस्तेमाल करते हैं।</li>
+<li><b>सेवा की माँग:</b> जब आप किसी खाली सेवा में "मुझे यह सेवा चाहिए" दबाते हैं, तो सेवा का नाम और (अगर आपने लिखा हो) आपका मोहल्ला दर्ज होता है, ताकि हम जान सकें कि प्रोवाइडर कहाँ पहले जोड़ने हैं। इसमें नाम या नंबर नहीं रहता।</li></ul>
+
+<h2>2. जानकारी किसे दिखती है</h2>
+<ul>
+<li>प्रोवाइडर का मोबाइल नंबर बुकिंग स्वीकार होने के बाद ही उस बुकिंग के ग्राहक को दिखता है।</li>
+<li>ग्राहक का नाम, नंबर और पता सिर्फ़ उसी बुकिंग के प्रोवाइडर को दिखता है।</li>
+<li>रेटिंग और टिप्पणी सबको दिखती है।</li>
+<li>वीडियो कॉल Jitsi (meet.jit.si) पर होती है, उनकी अपनी नीति लागू है।</li></ul>
+
+<h2>3. हम जानकारी का क्या करते हैं</h2>
+<p>बुकिंग कराने, प्रोवाइडर से जोड़ने, भुगतान और कमीशन का हिसाब रखने, धोखाधड़ी रोकने और सेवा सुधारने के लिए। हम जानकारी बेचते नहीं और विज्ञापन कंपनियों को नहीं देते।</p>
+
+<h2>4. भुगतान</h2>
+<p>भुगतान ग्राहक सीधे प्रोवाइडर को UPI/नकद से करता है। हम बैंक कार्ड या UPI पिन नहीं लेते। कमीशन के हिसाब के लिए हम बुकिंग की राशि दर्ज करते हैं।</p>
+
+<h2>5. डेटा कहाँ रहता है</h2>
+<p>Google Firebase (Firestore) के सर्वरों पर, सुरक्षा नियमों के साथ। AI सहायक का बातचीत वाला हिस्सा (अगर चालू हो) एक सुरक्षित सर्वर से होकर Gemini/Groq जैसी सेवा तक जाता है; उसमें सिर्फ़ चैट का लिखा हुआ अंश जाता है, आपका नाम या नंबर नहीं। इसलिए चैट में नंबर, OTP या बैंक जानकारी न लिखें।</p>
+
+<h2>6. आपके अधिकार और खाता हटाना</h2>
+<p>ऐप में <b>होम → नीचे "खाता हटाएँ"</b> दबाएँ। आपका नाम, नंबर और पता मिटा दिया जाता है और प्रोवाइडर प्रोफ़ाइल हट जाती है। चालू बुकिंग हों तो पहले उन्हें पूरा या रद्द करें। विवाद और हिसाब के लिए बुकिंग का गुमनाम रिकॉर्ड (राशि, तारीख, सेवा) रखा जा सकता है। विस्तार: <a href="delete-account.html">खाता हटाने का पेज</a>।</p>
+
+<h2>7. बच्चे</h2>
+<p>यह ऐप 18 साल से कम उम्र के लोगों के लिए नहीं है।</p>
+
+<h2>8. बदलाव और संपर्क</h2>
+<p>नीति बदलेगी तो यही पेज अपडेट होगा। संपर्क: <b>WhatsApp: 8521636169</b></p>
+
+<hr>
+<h1>Privacy Policy (English)</h1>
+<p>hazirbro.co.in connects customers with local service providers in Godda and nearby towns. We collect name, mobile number, booking address and details, ratings, and for providers/partners: service, area, number, UPI ID and approximate location (only with your permission). Location is used only to rank nearby providers and calculate distance; a customer’s exact location stays on the device. Microphone is used only when you tap the voice button; we do not store recordings. To count how many phones use the app, we keep an anonymous device record (anonymous ID, first and last open date, phone type, app language, and whether the app runs from the home screen) with no name or number. If you tap “I need this service” on an empty category, we store the service and, if you typed it, your neighbourhood (no name or number).</p>
+<p>A provider’s number is shown to a customer only after the booking is accepted; a customer’s name, number and address are shown only to the provider of that booking. Ratings are public. Payments are made directly to the provider; we never collect card details or UPI PINs. We do not sell personal data.</p>
+<p>Data is stored on Google Firebase. You can delete your account in the app (Home → “Delete account”); your name, number and address are erased and a provider profile is removed. An anonymised booking record (amount, date, service) may be kept for disputes and accounting. The app is not for children under 18. Contact: <b>WhatsApp: 8521636169</b></p>
+</body></html>
