@@ -1,8 +1,9 @@
 {
-  "name": "हाज़िर",
+  "name": "hazirbro.co.in",
   "short_name": "हाज़िर",
   "description": "हर काम में हाज़िर: आपके शहर की हर ज़रूरत, एक ही ऐप में",
   "lang": "hi",
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

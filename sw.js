@@ -1,7 +1,7 @@
 // सरल Service Worker: पहले नेटवर्क, न मिले तो सेव की हुई कॉपी।
 // इससे नया अपडेट अपलोड करते ही लोगों को दिख जाता है।
-const CACHE = 'hazir-v2';
-const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png'];
+const CACHE = 'hazirbro-v3';
+const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'icon-512-maskable.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).catch(() => {}));
